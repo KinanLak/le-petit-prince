@@ -1,0 +1,95 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title class="ion-text-center">Le Petit Prince</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="login-content">
+    <div class="login-container">
+        <div class="animated-background">
+            <div class="stars"></div>
+            <div class="twinkling"></div>
+        </div>
+
+        <div class="login-card">
+            <div class="logo-container animated fadeIn">
+                
+                <h1 class="school-title">Le Petit Prince</h1>
+                <h3 class="school-subtitle">École Maternelle</h3>
+            </div>
+
+            <form
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmit()"
+                class="animated fadeInUp"
+            >
+                <h2 class="form-title">Espace Parents</h2>
+
+                <div class="form-group">
+                    <ion-item class="custom-item">
+                        <ion-icon name="person-outline" slot="start"></ion-icon>
+                        <ion-input
+                            type="text"
+                            formControlName="username"
+                        ></ion-input>
+                    </ion-item>
+                    <ion-note
+                        class="error-message"
+                        *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')"
+                    >
+                        L'identifiant est requis
+                    </ion-note>
+                </div>
+
+                <div class="form-group">
+                    <ion-item class="custom-item">
+                        <ion-icon
+                            name="lock-closed-outline"
+                            slot="start"
+                        ></ion-icon>
+                        <ion-input
+                            [type]="showPassword ? 'text' : 'password'"
+                            formControlName="password"
+                        ></ion-input>
+                        <ion-icon
+                            [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+                            slot="end"
+                            (click)="togglePasswordVisibility()"
+                            class="password-toggle"
+                        >
+                        </ion-icon>
+                    </ion-item>
+                    <ion-note
+                        class="error-message"
+                        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
+                    >
+                        Le mot de passe est requis
+                    </ion-note>
+                </div>
+
+                <div class="remember-container">
+                    <ion-item lines="none" class="remember-item">
+                        <ion-checkbox formControlName="remember"></ion-checkbox>
+                        <ion-label class="ion-padding-start"
+                            >Se souvenir de moi</ion-label
+                        >
+                    </ion-item>
+                </div>
+
+                <ion-button
+                    expand="block"
+                    type="submit"
+                    [disabled]="loginForm.invalid || isLoading"
+                    class="login-button"
+                >
+                    <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
+                    <span *ngIf="!isLoading">Se connecter</span>
+                </ion-button>
+            </form>
+
+            <div class="footer-text animated fadeIn">
+                <p>© 2023 École Le Petit Prince - Tous droits réservés</p>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>Articles</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="toggleViewFavorites()">
+                <ion-icon *ngIf="!showFavorites" slot="start" name="heart"></ion-icon>
+                {{ showFavorites ? 'Tous les articles' : 'Favoris' }}
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar
+        [(ngModel)]="searchTerm"
+        placeholder="Rechercher"
+    ></ion-searchbar>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="articles-container">
+        <ng-container *ngIf="articles$ | async as articles">
+            <ion-card
+                *ngFor="let article of filterArticles(articles)"
+                class="article-card"
+            >
+                <div
+                    class="article-header"
+                    [class.important]="article.important"
+                >
+                    <span class="categorie">{{article.categorie}}</span>
+                    <span class="date"
+                        >{{article.date | date:'dd/MM/yyyy'}}</span
+                    >
+                </div>
+
+                <ion-card-header>
+                    <ion-card-title>{{article.titre}}</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <p>{{article.texte}}</p>
+
+                    <ion-grid *ngIf="article.photos.length > 0">
+                        <ion-row>
+                            <ion-col
+                                size="6"
+                                *ngFor="let photo of article.photos"
+                            >
+                                <img
+                                    [src]="'https://sebastien-thon.fr/prince/images/' + photo.image"
+                                    [alt]="photo.legende"
+                                    class="article-image"
+                                />
+                                <small class="photo-legend"
+                                    >{{photo.legende}}</small
+                                >
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
+                <!-- Bouton favoris avec icône -->
+                <ion-button
+                    fill="outline"
+                    size="small"
+                    (click)="toggleFavorite(article)"
+                >
+                    <ion-icon
+                        slot="start"
+                        [name]="article.isFavorite ? 'heart' : 'heart-outline'"
+                    ></ion-icon>
+                    {{ article.isFavorite ? 'Retirer des favoris' : 'Ajouter aux
+                    favoris' }}
+                </ion-button>
+            </ion-card>
+        </ng-container>
+    </div>
+</ion-content>

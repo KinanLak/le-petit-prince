@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>
+            <ion-icon slot="start" name="images-outline"></ion-icon>
+            Galerie
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="gallery-container">
+        <ng-container *ngIf="galleries$ | async as galleries">
+            <div class="gallery-card" *ngFor="let gallery of galleries">
+                <div class="gallery-header">
+                    <h2>
+                        <ion-icon slot="start" name="albums-outline"></ion-icon>
+                        {{gallery.titre}}
+                    </h2>
+                    <span class="date">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        {{gallery.date | date:'dd/MM/yyyy'}}
+                    </span>
+                </div>
+
+                <p class="gallery-text">{{gallery.texte}}</p>
+
+                <div class="photo-grid">
+                    <div
+                        class="photo-item"
+                        *ngFor="let photo of gallery.photos"
+                    >
+                        <img
+                            [src]="'https://sebastien-thon.fr/prince/images/' + photo.image"
+                            [alt]="photo.legende"
+                        />
+                        <div class="photo-overlay">
+                            <ion-icon name="eye-outline"></ion-icon>
+                            <span>{{photo.legende}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ion-content>
