@@ -1,6 +1,6 @@
 .gallery-container {
     padding: 16px;
-    max-width: 800px; // <-- modifié de 1200px à 800px
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -8,9 +8,9 @@
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    margin-bottom: 16px; // <-- modifié de 24px à 16px
+    margin-bottom: 16px;
     overflow: hidden;
-    margin: 12px; // <-- ajouté
+    margin: 12px;
 
     .gallery-header {
         padding: 16px;

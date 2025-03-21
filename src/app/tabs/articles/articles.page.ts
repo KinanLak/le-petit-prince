@@ -13,7 +13,7 @@ export class ArticlesPage implements OnInit {
     articles$: Observable<Article[]>;
     searchTerm = '';
     showFavorites = false;
-    favorites: string[] = []; // stocke les identifiants (ici le titre) des articles favoris
+    favorites: string[] = [];
 
     constructor(private schoolService: SchoolService) {
         const fav = localStorage.getItem('favorites');
@@ -22,7 +22,6 @@ export class ArticlesPage implements OnInit {
             map((data) => {
                 const articles = data?.articles || [];
                 articles.forEach((article) => {
-                    // Marquer comme favori si présent dans le tableau
                     article.isFavorite = this.favorites.includes(article.titre);
                 });
                 return articles.sort(
@@ -34,7 +33,6 @@ export class ArticlesPage implements OnInit {
     }
 
     ngOnInit() {
-        // Debug : afficher les articles reçus
         this.articles$.subscribe((articles) => {
             console.log('Articles reçus : ', articles);
         });

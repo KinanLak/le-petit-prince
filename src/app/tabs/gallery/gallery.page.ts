@@ -25,7 +25,7 @@ export class GalleryPage {
                         ) ?? []
                 )
             );
-        // Debug : afficher les galeries reçues
+
         this.galleries$.subscribe((galleries) => {
             console.log('Galeries reçues : ', galleries);
         });

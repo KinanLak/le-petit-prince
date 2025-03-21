@@ -27,7 +27,7 @@ export class SchoolService {
                         console.error('Erreur API :', response.erreur);
                         return false;
                     }
-                    // Convertir explicitement les valeurs pour s'assurer d'avoir des arrays
+
                     const data: SchoolData = {
                         articles: response.articles || [],
                         galeries: response.galeries || [],

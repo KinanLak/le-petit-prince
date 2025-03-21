@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit() {
-        // Load saved credentials if any
+        // Load saved credentials
         const savedCredentials = this.authService.getRememberedCredentials();
         if (savedCredentials.remember) {
             this.loginForm.patchValue({
@@ -61,7 +61,6 @@ export class LoginPage implements OnInit {
                         password,
                         remember
                     );
-                    // Changer la redirection vers /tabs/articles
                     if (!localStorage.getItem('tutorialSeen') && false) {
                         this.router.navigateByUrl('/tuto');
                     } else {

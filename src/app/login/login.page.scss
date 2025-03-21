@@ -175,25 +175,8 @@ ion-icon {
     }
 }
 
-// Footer
 .footer-text {
     margin-top: 30px;
     font-size: 12px;
     color: #999;
-}
-
-// Responsive adjustments
-@media (max-width: 576px) {
-    .login-card {
-        width: 95%;
-        padding: 20px;
-    }
-
-    .school-title {
-        font-size: 24px;
-    }
-
-    .school-subtitle {
-        font-size: 16px;
-    }
 }

@@ -29,7 +29,7 @@ export class AuthService {
                 if (response.resultat === 'OK') {
                     this.isLoggedIn = true;
                     console.log('Connexion OK, appel de getSchoolData...');
-                    // Appeler getSchoolData et s'abonner pour déclencher la requête
+
                     this.schoolService
                         .getSchoolData(username, password)
                         .subscribe(

@@ -14,7 +14,7 @@ export class DatesPage implements OnInit {
     constructor(private schoolService: SchoolService) {}
 
     ngOnInit() {
-        // Subscribe to school data and set dates if available
+
         this.schoolService.getData().subscribe((data) => {
             if (data) {
                 this.dates = data.dates || [];
@@ -30,7 +30,7 @@ export class DatesPage implements OnInit {
             },
             (error) => {
                 console.error(
-                    'Erreur lors de l’actualisation des dates',
+                    'Erreur lors de l\'actualisation des dates',
                     error
                 );
                 event.target.complete();
