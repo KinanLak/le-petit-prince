@@ -1,0 +1,7 @@
+{
+  "name": "Le petit prince",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
